@@ -9,8 +9,41 @@ import Page3 from "../Page3/Page3";
 import Page4 from "../Page4/Page4";
 import Submit from "../Submit/Submit";
 import Return from "../Return/Return";
+//import { Change } from './Handler.js'
+
 
 class App extends Component {
+  
+  state = {
+    survey: ''
+    
+ }
+  Change = (event) => {
+    console.log("clicked")
+      console.log(event.target.value)
+      this.setState({
+        survey: event.target.value
+        
+          
+     })
+ 
+  }
+
+  Click = (event, actionName, path) => {
+    
+    console.log('clicked to route', path)
+    console.log("state:", this.state.survey)
+    this.props.dispatch({
+        type: actionName,
+        payload: this.state.survey
+    
+    })
+    
+}
+ 
+
+ 
+ 
   render() {
     return (
       <div className="App">
@@ -20,11 +53,11 @@ class App extends Component {
         </header>
         <br/>
         <Router>
-          <Route exact path="/" component={Page1}/>
-          <Route path="/page2" component={Page2}/>
-          <Route path="/page3" component={Page3}/>
-          <Route path="/page4" component={Page4}/>
-          <Route path="/submit" component={Submit}/>
+          <Route exact path="/" render={()=> <Page1 Click={this.Click} Change={this.Change}/>}/>
+          <Route path="/page2" render={() => <Page2 Click={this.Click} Change={this.Change}/>}/>
+          <Route path="/page3" render={() => <Page3 Click={this.Click} Change={this.Change}/>}/>
+          <Route path="/page4" render={() => <Page4 Click={this.Click} Change={this.Change}/>}/>
+          <Route path="/submit" render={() => <Submit Submit={this.Submit}/>}/>
           <Route path="/return" component={Return}/>
         </Router>
       </div>
@@ -35,3 +68,6 @@ const connectState = (State) => ({
   State
 })
 export default connect(connectState)(App);
+
+
+// component={()=> <Page1 change={this.Change}/>}
