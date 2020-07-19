@@ -11,8 +11,11 @@ class Page2 extends Component{
             <>
                 <Router>
                     <h1>How well do you understand the content?</h1>
-                    <input onChange={(event) => this.props.Change(event, "question2")} type="text" placeholder="How are  you feeling" />
+                    
+                    <input onChange={(event) => this.props.Change(event, "question2")} type="text" placeholder="How well do you understand" />
+                    
                     <Link to='/page3'><button className="btn" onClick={(event) => this.props.Click(event, "ADD_PAGE2", "/page3")}>click</button></Link>
+               
                </Router>
                 
             </>

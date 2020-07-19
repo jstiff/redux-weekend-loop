@@ -10,7 +10,8 @@ class Return extends Component{
             <>
                 <h1>Thank You</h1>
                 
-                
+                <Link to='/'><button className="btn" onClick={this.props.Reset}>return</button></Link>
+
             </>
         )
     }

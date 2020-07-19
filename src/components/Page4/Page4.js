@@ -10,8 +10,11 @@ class Page4 extends Component{
             <>
                 <Router>
                     <h1>Any comments you want to leave?</h1>
+
                     <input onChange={(event) => this.props.Change(event, "question4")} type="text" placeholder="leave us comments" />
+
                     <Link to='/submit'><button className="btn" onClick={(event) => this.props.Click(event, "ADD_PAGE4", "question4")}>click</button></Link>
+                
                 </Router>
             </>
         )

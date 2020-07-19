@@ -9,7 +9,7 @@ import Page3 from "../Page3/Page3";
 import Page4 from "../Page4/Page4";
 import Submit from "../Submit/Submit";
 import Return from "../Return/Return";
-//import { Change } from './Handler.js'
+
 
 
 class App extends Component {
@@ -21,6 +21,9 @@ class App extends Component {
 
  BtnChange = (event) => {
     console.log("readiobtn clicked", event.target);
+    this.setState({
+      survey: event.target.value
+    })
  }
 
   Change = (event) => {
@@ -34,17 +37,28 @@ class App extends Component {
  
   }
 
-  Click = (event, actionName, path) => {
+Click = (event, actionName, path) => {
+  console.log("click event", event)
+  if(this.state.survey === ''){
     
-    console.log('clicked to route', path)
-    console.log("state:", this.state.survey)
+    alert('must provide feedback')
+    return ;
+  }
     this.props.dispatch({
-        type: actionName,
-        payload: this.state.survey
+      type: actionName,
+      payload: this.state.survey
     
     })
     
 }
+
+Reset = () => {
+  console.log("thank you")
+  this.props.dispatch({
+      type:"RESET",
+  })
+}
+
  
 
  
@@ -63,7 +77,7 @@ class App extends Component {
           <Route path="/page3" render={() => <Page3 Click={this.Click} BtnChange={this.BtnChange}/>}/>
           <Route path="/page4" render={() => <Page4 Click={this.Click} Change={this.Change}/>}/>
           <Route path="/submit" render={() => <Submit Submit={this.Submit}/>}/>
-          <Route path="/return" component={Return}/>
+          <Route path="/return" render={() => <Return Reset={this.Reset}/>}/>
         </Router>
       </div>
     );
@@ -75,4 +89,3 @@ const connectState = (State) => ({
 export default connect(connectState)(App);
 
 
-// component={()=> <Page1 change={this.Change}/>}

@@ -26,15 +26,22 @@ class Submit extends Component{
       }
 
     render(){
+        let style = {
+            borderBottom:"1px solid black",
+            marginBottom:"50px",
+            display:"block",
+            padding:"30px",
+        }
         return(
             <>
                 <h1>Review your Feedback</h1>
-                <h3>Does everything look good?</h3>
-                {/* {JSON.stringify(this.props.State.inputReducer)} */}
+                <span><h2 style={style}>Does everything look good?</h2></span>
+               
                 {this.props.State.inputReducer.map((item, index)=>{
-                    return <div><h3 key={index}>{item}</h3><br /></div>
+                    return <div><h3 key={index}>{index + 1}:: {item}</h3><br /></div>
                 })}
-                <Link to='/return'><button className="btn" onClick={(event) => this.Submit(event)}>submit survey</button></Link>
+                
+                <Link to='/return'><button className="btn" onClick={(event) => this.Submit(event)}>submit</button></Link>
             </>
         )
     }
