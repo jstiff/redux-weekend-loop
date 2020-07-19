@@ -18,8 +18,13 @@ class App extends Component {
     survey: ''
     
  }
+
+ BtnChange = (event) => {
+    console.log("readiobtn clicked", event.target);
+ }
+
   Change = (event) => {
-    console.log("clicked")
+    console.log("clicked", event)
       console.log(event.target.value)
       this.setState({
         survey: event.target.value
@@ -55,7 +60,7 @@ class App extends Component {
         <Router>
           <Route exact path="/" render={()=> <Page1 Click={this.Click} Change={this.Change}/>}/>
           <Route path="/page2" render={() => <Page2 Click={this.Click} Change={this.Change}/>}/>
-          <Route path="/page3" render={() => <Page3 Click={this.Click} Change={this.Change}/>}/>
+          <Route path="/page3" render={() => <Page3 Click={this.Click} BtnChange={this.BtnChange}/>}/>
           <Route path="/page4" render={() => <Page4 Click={this.Click} Change={this.Change}/>}/>
           <Route path="/submit" render={() => <Submit Submit={this.Submit}/>}/>
           <Route path="/return" component={Return}/>
